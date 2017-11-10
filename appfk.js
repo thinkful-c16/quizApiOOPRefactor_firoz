@@ -27,26 +27,26 @@ const store = {
     if (this.currentQuestionIndex === this.totalQuestions-1) {  //index is 4, current is question 5 
       this.page = 'outro';
       render();
-    } else if (this.currentQuestionIndex < this.totalQuestions-1){   //index is 3,  current question is 4
+    } else if (this.currentQuestionIndex > 0  && (this.currentQuestionIndex < this.totalQuestions-1) ){
       this.page = 'question';
       render();
     } else {
       render();
     }
   }
-}
+}; 
 
-const getInitialStore = function(){
-  return {
-    page: 'intro',
-    currentQuestionIndex: null,
-    userAnswers: [],
-    feedback: null,
-    sessionToken,
-  };
-};
+// const getInitialStore = function(){
+//   return {
+//     page: 'intro',
+//     currentQuestionIndex: null,
+//     userAnswers: [],
+//     feedback: null,
+//     sessionToken,
+//   };
+// };
 
-let store = getInitialStore();
+//let store = getInitialStore();
 
 // Helper functions START =========
 const hideAll = function() {
@@ -145,9 +145,6 @@ const getScore = function() {
 //Question Status functions END =========
 
 
-function Template(){
-
-}
 
 // HTML generator functions START =========
 const generateAnswerItemHtml = function(answer) {
@@ -185,11 +182,9 @@ const generateFeedbackHtml = function(feedback) {
 };
 // HTML generator functions END =========
 
-
-
 //Handler Functions START =========
 const handleStartQuiz = function() {
-  store = getInitialStore();
+  // store = getInitialStore();
   store.page = 'question';
   store.currentQuestionIndex = 0;
   const quantity = parseInt($('#js-question-quantity').find(':selected').val(), 10);
@@ -227,8 +222,6 @@ const handleNextQuestion = function() {
   render();
 };
 //Handler Functions END =========
-
-
 
 
 //Render Functions
